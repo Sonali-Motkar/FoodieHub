@@ -266,8 +266,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ContentValues cv = new ContentValues();
                 cv.put(COL_USER_ID, user.getId() != null ? user.getId() : "USR-101");
                 cv.put(COL_USER_NAME, user.getName() != null ? user.getName() : "Sonali Motkar");
-                cv.put(COL_USER_EMAIL, user.getEmail() != null ? user.getEmail() : "sonali.m@gmail.com");
-                cv.put(COL_USER_PHONE, user.getPhone() != null ? user.getPhone() : "+91 9876543210");
+                cv.put(COL_USER_EMAIL, user.getEmail() != null ? user.getEmail() : "sonalimotkar001@gmail.com");
+                cv.put(COL_USER_PHONE, user.getPhone() != null ? user.getPhone() : "+91 832961****");
                 cv.put(COL_USER_ADDRESS, user.getAddress() != null ? user.getAddress() : "Pune");
                 cv.put(COL_USER_ROLE, user.getRole() != null ? user.getRole() : "customer");
                 cv.put(COL_JWT_TOKEN, token != null ? token : "jwt_default_token");
@@ -297,8 +297,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 user = new User(
                     colId != -1 ? cursor.getString(colId) : "USR-101",
                     colName != -1 ? cursor.getString(colName) : "Sonali Motkar",
-                    colEmail != -1 ? cursor.getString(colEmail) : "sonali.m@gmail.com",
-                    colPhone != -1 ? cursor.getString(colPhone) : "+91 9876543210",
+                    colEmail != -1 ? cursor.getString(colEmail) : "sonalimotkar001@gmail.com",
+                    colPhone != -1 ? cursor.getString(colPhone) : "+91 832961****",
                     colAddress != -1 ? cursor.getString(colAddress) : "Pune",
                     colRole != -1 ? cursor.getString(colRole) : "customer"
                 );

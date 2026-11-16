@@ -68,7 +68,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/bg_rounded_input"
-                android:hint="sonali.m@gmail.com"
+                android:hint="sonalimotkar001@gmail.com"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="14dp"
                 android:textSize="14sp" />
@@ -88,7 +88,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="6dp"
                 android:background="@drawable/bg_rounded_input"
-                android:hint="+91 9876543210"
+                android:hint="+91 832961****"
                 android:inputType="phone"
                 android:paddingHorizontal="14dp"
                 android:textSize="14sp" />

@@ -135,7 +135,7 @@ npm start
 ## 🔐 Demo Test Accounts
 | Role | Email | Password | Access Scope |
 | :--- | :--- | :--- | :--- |
-| **Customer** | `sonali.m@gmail.com` | `Pass@123` | Discovery, SQLite Cart, Checkout, Order Tracking |
+| **Customer** | `sonalimotkar001@gmail.com` | `Pass@123` | Discovery, SQLite Cart, Checkout, Order Tracking |
 | **Administrator** | `admin@foodiehub.com` | `Admin@2026` | Live Business Metrics, Dispatch Status Updates |
 
 ---

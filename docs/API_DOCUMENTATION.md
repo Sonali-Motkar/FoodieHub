@@ -20,9 +20,9 @@ http://<host-ip>:5000/api
   ```json
   {
     "name": "Sonali Motkar",
-    "email": "sonali.m@gmail.com",
+    "email": "sonalimotkar001@gmail.com",
     "password": "Pass@123",
-    "phone": "+91 9876543210",
+    "phone": "+91 832961****",
     "deliveryAddress": "Flat 402, Green Palms, Kothrud, Pune - 411038"
   }
   ```
@@ -35,7 +35,7 @@ http://<host-ip>:5000/api
     "user": {
       "id": "654a1b2c3d4e5f6a7b8c9d01",
       "name": "Sonali Motkar",
-      "email": "sonali.m@gmail.com",
+      "email": "sonalimotkar001@gmail.com",
       "role": "customer"
     }
   }
@@ -47,7 +47,7 @@ http://<host-ip>:5000/api
 - **Request Body**:
   ```json
   {
-    "email": "sonali.m@gmail.com",
+    "email": "sonalimotkar001@gmail.com",
     "password": "Pass@123"
   }
   ```
@@ -60,7 +60,7 @@ http://<host-ip>:5000/api
     "user": {
       "id": "654a1b2c3d4e5f6a7b8c9d01",
       "name": "Sonali Motkar",
-      "email": "sonali.m@gmail.com",
+      "email": "sonalimotkar001@gmail.com",
       "role": "customer"
     }
   }

@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         txtChangeIp = findViewById(R.id.txtChangeServerIp);
 
         // Pre-fill demo test credentials for easy verification
-        edtEmail.setText("sonali.m@gmail.com");
+        edtEmail.setText("sonalimotkar001@gmail.com");
         edtPassword.setText("Pass@123");
 
         btnLogin.setOnClickListener(v -> performLogin());
@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             isAdmin ? "ADM-001" : "USR-101",
             isAdmin ? "Master Admin" : "Sonali Motkar",
             email,
-            "+91 9876543210",
+            "+91 832961****",
             "Flat 402, Green Palms, Kothrud, Pune",
             isAdmin ? "admin" : "customer"
         );
