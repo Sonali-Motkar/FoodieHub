@@ -31,10 +31,12 @@ import com.foodiehub.R;
 import com.foodiehub.adapters.CategoryAdapter;
 import com.foodiehub.adapters.FoodAdapter;
 import com.foodiehub.adapters.PopularFoodAdapter;
+import com.foodiehub.adapters.RestaurantAdapter;
 import com.foodiehub.database.DatabaseHelper;
 import com.foodiehub.models.CartItem;
 import com.foodiehub.models.Category;
 import com.foodiehub.models.FoodItem;
+import com.foodiehub.models.Restaurant;
 import com.foodiehub.models.User;
 import com.foodiehub.network.ApiClient;
 import com.foodiehub.network.ApiService;
@@ -49,17 +51,21 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity implements
         FoodAdapter.OnFoodClickListener,
         CategoryAdapter.OnCategorySelectedListener,
-        PopularFoodAdapter.OnPopularItemListener {
+        PopularFoodAdapter.OnPopularItemListener,
+        RestaurantAdapter.OnRestaurantClickListener {
 
     private TextView txtGreeting, txtHeroHeadline, txtFloatingCount, txtFloatingTotal, txtViewAllPopular;
+    private TextView txtUserAddressHeader, txtSeeAllRestaurants;
+    private LinearLayout layoutLocationSelector;
     private EditText edtSearch;
     private FrameLayout btnGlassMenu, btnNavLogout;
     private ImageView btnFilterTune, imgPromoCombo;
     private Button btnPromoOrderNow;
     private CardView cardPromoBanner, cardFloatingCart;
 
-    private RecyclerView recyclerCategories, recyclerPopularFoods, recyclerFoods;
+    private RecyclerView recyclerCategories, recyclerRestaurants, recyclerPopularFoods, recyclerFoods;
     private CategoryAdapter categoryAdapter;
+    private RestaurantAdapter restaurantAdapter;
     private PopularFoodAdapter popularFoodAdapter;
     private FoodAdapter foodAdapter;
 
@@ -70,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements
     private List<FoodItem> masterFoodList = new ArrayList<>();
     private List<FoodItem> popularList = new ArrayList<>();
     private List<Category> categoryList = new ArrayList<>();
+    private List<Restaurant> restaurantList = new ArrayList<>();
     private String selectedCategory = "Burger";
 
     @Override
@@ -83,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements
         initViews();
         setupHeroHeadline();
         setupCategories();
+        setupRestaurants();
         fetchFoods();
         setupBottomNav();
         setupPromoBanner();
@@ -99,22 +107,18 @@ public class MainActivity extends AppCompatActivity implements
         cardFloatingCart.setOnClickListener(v -> openCart());
 
         btnNavLogout.setOnClickListener(v -> {
-            dbHelper.logout();
-            Toast.makeText(MainActivity.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            finishAffinity();
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
         });
 
         btnGlassMenu.setOnClickListener(v -> {
-            Toast.makeText(this, "FoodieHub Dark Glass UI • v2.0", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "FoodieHub Dark Glass UI • Swiggy Edition", Toast.LENGTH_SHORT).show();
         });
 
         btnFilterTune.setOnClickListener(v -> {
-            Toast.makeText(this, "Filters applied: Top Rated & Most Popular", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Filters applied: Top Rated in Pune (4.0+ ★)", Toast.LENGTH_SHORT).show();
         });
 
         txtViewAllPopular.setOnClickListener(v -> {
-            // Smoothly scroll down to full catalog
             View catalogTitle = findViewById(R.id.recyclerFoods);
             if (catalogTitle != null) {
                 catalogTitle.getParent().requestChildFocus(catalogTitle, catalogTitle);
@@ -126,6 +130,13 @@ public class MainActivity extends AppCompatActivity implements
     protected void onResume() {
         super.onResume();
         updateCartBadge();
+        currentUser = dbHelper.getLoggedInUser();
+        if (currentUser != null && currentUser.getName() != null) {
+            txtGreeting.setText("Hi, " + currentUser.getName().split(" ")[0] + " 👋");
+            if (currentUser.getAddress() != null && !currentUser.getAddress().isEmpty()) {
+                txtUserAddressHeader.setText(currentUser.getAddress());
+            }
+        }
     }
 
     private void initViews() {
@@ -134,6 +145,9 @@ public class MainActivity extends AppCompatActivity implements
         txtFloatingCount = findViewById(R.id.txtFloatingCartCount);
         txtFloatingTotal = findViewById(R.id.txtFloatingCartTotal);
         txtViewAllPopular = findViewById(R.id.txtViewAllPopular);
+        txtUserAddressHeader = findViewById(R.id.txtUserAddressHeader);
+        txtSeeAllRestaurants = findViewById(R.id.txtSeeAllRestaurants);
+        layoutLocationSelector = findViewById(R.id.layoutLocationSelector);
         edtSearch = findViewById(R.id.edtSearchFood);
 
         btnGlassMenu = findViewById(R.id.btnGlassMenu);
@@ -145,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements
         cardFloatingCart = findViewById(R.id.cardFloatingCart);
 
         recyclerCategories = findViewById(R.id.recyclerCategories);
+        recyclerRestaurants = findViewById(R.id.recyclerRestaurants);
         recyclerPopularFoods = findViewById(R.id.recyclerPopularFoods);
         recyclerFoods = findViewById(R.id.recyclerFoods);
 
@@ -155,8 +170,24 @@ public class MainActivity extends AppCompatActivity implements
 
         if (currentUser != null && currentUser.getName() != null) {
             txtGreeting.setText("Hi, " + currentUser.getName().split(" ")[0] + " 👋");
+            if (currentUser.getAddress() != null && !currentUser.getAddress().isEmpty()) {
+                txtUserAddressHeader.setText(currentUser.getAddress());
+            } else {
+                txtUserAddressHeader.setText("Flat 402, Green Palms, Kothrud, Pune");
+            }
         } else {
             txtGreeting.setText("Hi, Sonali 👋");
+            txtUserAddressHeader.setText("Jeevan Nagar, Tathawade, Pune...");
+        }
+
+        layoutLocationSelector.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+        });
+
+        if (txtSeeAllRestaurants != null) {
+            txtSeeAllRestaurants.setOnClickListener(v -> {
+                Toast.makeText(this, "Showing top restaurant chains in Pune", Toast.LENGTH_SHORT).show();
+            });
         }
     }
 
@@ -202,13 +233,12 @@ public class MainActivity extends AppCompatActivity implements
 
     private void setupBottomNav() {
         navBtnHome.setOnClickListener(v -> {
-            // Scroll to top
             View scroll = findViewById(R.id.nestedScrollHome);
             if (scroll != null) scroll.scrollTo(0, 0);
         });
 
         navBtnOffers.setOnClickListener(v -> {
-            Toast.makeText(this, "🎁 20% OFF applied on Combos! Promo: FREEDEL", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "🎁 20% OFF applied on Wendy's & KFC! Promo: ONEFREE", Toast.LENGTH_LONG).show();
         });
 
         navBtnOrders.setOnClickListener(v -> {
@@ -216,20 +246,97 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         navBtnFavorites.setOnClickListener(v -> {
-            Toast.makeText(this, "❤️ Saved favorite dishes", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
         });
     }
 
     private void setupCategories() {
+        // 14 Authentic Swiggy Categories from Reference Screenshot 1 (media_1794848131140_2370902b.jpg)
         categoryList = new ArrayList<>();
-        categoryList.add(new Category("CAT-01", "Burger", "ic_category_burger"));
-        categoryList.add(new Category("CAT-02", "Pizza", "ic_category_pizza"));
-        categoryList.add(new Category("CAT-03", "Chicken", "ic_category_chicken"));
-        categoryList.add(new Category("CAT-04", "Fries", "ic_category_fries"));
-        categoryList.add(new Category("CAT-05", "Drink", "ic_category_drink"));
+        categoryList.add(new Category("CAT-01", "Burger", "https://images.unsplash.com/photo-1568901346375-23c9450c58cd"));
+        categoryList.add(new Category("CAT-02", "Biryani", "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8"));
+        categoryList.add(new Category("CAT-03", "Pizza", "https://images.unsplash.com/photo-1513104890138-7c749659a591"));
+        categoryList.add(new Category("CAT-04", "North Indian", "https://images.unsplash.com/photo-1589302168068-964664d93dc0"));
+        categoryList.add(new Category("CAT-05", "Chinese", "https://images.unsplash.com/photo-1585032226651-759b368d7246"));
+        categoryList.add(new Category("CAT-06", "South Indian", "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4"));
+        categoryList.add(new Category("CAT-07", "Cake", "https://images.unsplash.com/photo-1578985545062-69928b1d9587"));
+        categoryList.add(new Category("CAT-08", "Ice Cream", "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f"));
+        categoryList.add(new Category("CAT-09", "Momo", "https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9"));
+        categoryList.add(new Category("CAT-10", "Paratha", "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46"));
+        categoryList.add(new Category("CAT-11", "Pasta", "https://images.unsplash.com/photo-1551183053-bf91a1d81141"));
+        categoryList.add(new Category("CAT-12", "Khichdi", "https://images.unsplash.com/photo-1601050690597-df0568f70950"));
+        categoryList.add(new Category("CAT-13", "Pav Bhaji", "https://images.unsplash.com/photo-1606491956689-2ea866880c84"));
+        categoryList.add(new Category("CAT-14", "Dosa", "https://images.unsplash.com/photo-1668236543090-82eba5ee5976"));
 
         categoryAdapter = new CategoryAdapter(this, categoryList, this);
         recyclerCategories.setAdapter(categoryAdapter);
+    }
+
+    private void setupRestaurants() {
+        // Authentic Top Restaurant Chains in Pune from Reference Screenshot 2 (media_1794848160605_0da368f4.jpg)
+        restaurantList = new ArrayList<>();
+        restaurantList.add(new Restaurant(
+                "REST-WENDYS",
+                "Wendy's Burgers",
+                4.2,
+                "25-30 mins",
+                "Burgers, Fast Food, wrap",
+                "Ravet",
+                "https://images.unsplash.com/photo-1586190848861-99aa4a171e90",
+                true,
+                "ITEMS AT ₹79"
+        ));
+
+        restaurantList.add(new Restaurant(
+                "REST-KFC",
+                "KFC",
+                3.8,
+                "25-30 mins",
+                "Burgers, Fast Food, Rolls & Wraps",
+                "Puna wale",
+                "https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb",
+                true,
+                "ITEMS AT ₹199"
+        ));
+
+        restaurantList.add(new Restaurant(
+                "REST-BK",
+                "Burger King",
+                3.9,
+                "25-30 mins",
+                "Burgers, American",
+                "Tathawade",
+                "https://images.unsplash.com/photo-1550547660-d9450f859349",
+                true,
+                "ITEMS AT ₹99"
+        ));
+
+        restaurantList.add(new Restaurant(
+                "REST-SUBWAY",
+                "Subway",
+                4.2,
+                "15-20 mins",
+                "sandwich, Salads, wrap, Healthy...",
+                "Tathawade",
+                "https://images.unsplash.com/photo-1509722747041-616f39b57569",
+                true,
+                "40% OFF UPTO ₹80"
+        ));
+
+        restaurantList.add(new Restaurant(
+                "REST-SAIRAT",
+                "Sairat Biryani",
+                4.4,
+                "20-25 mins",
+                "Biryani, North Indian, Kebabs",
+                "Ravet",
+                "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8",
+                true,
+                "ITEMS AT ₹149"
+        ));
+
+        restaurantAdapter = new RestaurantAdapter(this, restaurantList, this);
+        recyclerRestaurants.setAdapter(restaurantAdapter);
     }
 
     private void fetchFoods() {
@@ -256,59 +363,50 @@ public class MainActivity extends AppCompatActivity implements
     private void loadCuratedSampleFoods() {
         masterFoodList = new ArrayList<>();
 
-        // High-res curated menu items matching reference design
+        // Wendy's Burgers & Burgers
         masterFoodList.add(new FoodItem(
                 "FOD-01",
-                "Spicy Chicken Burger",
+                "Crispy Veg Burger.",
                 "Burger",
-                249.00,
-                "Crispy spicy chicken patty with fresh lettuce, tomato, onion and our special house sauce.",
-                "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
-                4.8,
-                "20 mins",
-                "480 kcal",
-                true
+                79.00,
+                "Crispy potato and peas patty topped with special mayonnaise, crisp lettuce and onion.",
+                "https://images.unsplash.com/photo-1550547660-d9450f859349",
+                4.2, "20 mins", "380 kcal", true, "Wendy's Burgers", true, 188, true
         ));
 
         masterFoodList.add(new FoodItem(
                 "FOD-02",
-                "Cheese Burger",
+                "Crispy Chicken Burger.",
                 "Burger",
-                189.00,
-                "Flame-grilled patty smothered in melted cheddar cheese, pickles, and creamy garlic dressing.",
-                "https://images.unsplash.com/photo-1586190848861-99aa4a171e90",
-                4.7,
-                "15 mins",
-                "420 kcal",
-                true
+                115.00,
+                "Crispy fried chicken patty with fresh shredded lettuce and secret house spicy mayo.",
+                "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+                4.2, "25 mins", "460 kcal", true, "Wendy's Burgers", false, 255, true
         ));
 
+        // KFC Special
         masterFoodList.add(new FoodItem(
                 "FOD-03",
-                "Double Beef / Paneer Burger",
+                "Chicken Krisper With Reg Fries",
                 "Burger",
-                299.00,
-                "Two juicy thick patties stacked with double melted cheese, caramelized onions, and BBQ glaze.",
-                "https://images.unsplash.com/photo-1550547660-d9450f859349",
-                4.9,
-                "25 mins",
-                "650 kcal",
-                true
+                273.00,
+                "Tender juicy chicken fillet inside soft sesame bun with salted fries.",
+                "https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb",
+                4.3, "25 mins", "560 kcal", true, "KFC", false, 312, true
         ));
 
+        // Sairat Biryani
         masterFoodList.add(new FoodItem(
                 "FOD-04",
-                "Crispy Peri Peri French Fries",
-                "Fries",
-                119.00,
-                "Crispy potato fries dusted with authentic fiery peri-peri seasoning and herb dip.",
-                "https://images.unsplash.com/photo-1573080496219-bb080dd4f877",
-                4.6,
-                "10 mins",
-                "310 kcal",
-                true
+                "Chicken Tandoori Dum Biryani",
+                "Biryani",
+                174.00,
+                "Aromatic basmati rice layered with smoky tandoori chicken and royal saffron spices.",
+                "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8",
+                4.4, "20 mins", "580 kcal", true, "Sairat Biryani", false, 340, true
         ));
 
+        // Pizza
         masterFoodList.add(new FoodItem(
                 "FOD-05",
                 "Farmhouse Supreme Pizza",
@@ -316,36 +414,51 @@ public class MainActivity extends AppCompatActivity implements
                 299.00,
                 "Handcrafted crust topped with fresh mozzarella, crunchy bell peppers, corn, and mushrooms.",
                 "https://images.unsplash.com/photo-1513104890138-7c749659a591",
-                4.8,
-                "25 mins",
-                "680 kcal",
-                true
+                4.8, "25 mins", "680 kcal", true, "Domino's Pizza", true, 210, true
         ));
 
+        // Chinese
         masterFoodList.add(new FoodItem(
                 "FOD-06",
                 "Chilli Garlic Hakka Noodles",
-                "Chicken",
+                "Chinese",
                 169.00,
                 "Wok-tossed noodles with shredded cabbage, fresh carrots, chillies, and garlic aromatics.",
                 "https://images.unsplash.com/photo-1585032226651-759b368d7246",
-                4.5,
-                "15 mins",
-                "380 kcal",
-                true
+                4.5, "15 mins", "380 kcal", true, "Chinese Wok", true, 160, true
         ));
 
+        // North Indian
         masterFoodList.add(new FoodItem(
                 "FOD-07",
-                "Cold Brew Frappe Drink",
-                "Drink",
+                "Paneer Butter Masala & Parathas",
+                "North Indian",
+                229.00,
+                "Cubes of fresh paneer simmered in creamy makhani gravy with butter laccha parathas.",
+                "https://images.unsplash.com/photo-1589302168068-964664d93dc0",
+                4.7, "20 mins", "520 kcal", true, "Punjab Grill", true, 195, true
+        ));
+
+        // South Indian
+        masterFoodList.add(new FoodItem(
+                "FOD-08",
+                "Masala Dosa With Sambhar",
+                "South Indian",
+                120.00,
+                "Golden crispy crepe stuffed with spiced potato mash served with coconut chutney.",
+                "https://images.unsplash.com/photo-1668236543090-82eba5ee5976",
+                4.6, "15 mins", "340 kcal", true, "Wadeshwar", true, 310, true
+        ));
+
+        // Ice Cream / Dessert
+        masterFoodList.add(new FoodItem(
+                "FOD-09",
+                "Belgian Chocolate Ice Cream Cup",
+                "Ice Cream",
                 99.00,
-                "Chilled espresso shaken with whole milk, crushed ice, chocolate drizzle, and cream.",
-                "https://images.unsplash.com/photo-1517701604599-bb29b565090c",
-                4.6,
-                "8 mins",
-                "210 kcal",
-                true
+                "Decadent dark chocolate gelato churned with roasted almond slivers.",
+                "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f",
+                4.9, "10 mins", "240 kcal", true, "Naturals Ice Cream", true, 410, true
         ));
 
         setupPopularFoods(masterFoodList);
@@ -355,7 +468,7 @@ public class MainActivity extends AppCompatActivity implements
     private void setupPopularFoods(List<FoodItem> allItems) {
         popularList = new ArrayList<>();
         for (FoodItem itm : allItems) {
-            if (itm.getRating() >= 4.6 || itm.getCategory().equalsIgnoreCase("Burger")) {
+            if (itm.getRating() >= 4.2 || itm.getCategory().equalsIgnoreCase("Burger")) {
                 popularList.add(itm);
             }
         }
@@ -383,6 +496,13 @@ public class MainActivity extends AppCompatActivity implements
         filterFoods(edtSearch.getText().toString());
     }
 
+    @Override
+    public void onRestaurantClick(Restaurant restaurant) {
+        Intent intent = new Intent(this, RestaurantDetailActivity.class);
+        intent.putExtra("RESTAURANT", restaurant);
+        startActivity(intent);
+    }
+
     private void filterFoods(String query) {
         List<FoodItem> filtered = new ArrayList<>();
         String q = query.trim().toLowerCase();
@@ -393,7 +513,8 @@ public class MainActivity extends AppCompatActivity implements
                     || item.getName().toLowerCase().contains(selectedCategory.toLowerCase());
             boolean matchesQuery = q.isEmpty()
                     || item.getName().toLowerCase().contains(q)
-                    || item.getDescription().toLowerCase().contains(q);
+                    || item.getDescription().toLowerCase().contains(q)
+                    || (item.getRestaurantName() != null && item.getRestaurantName().toLowerCase().contains(q));
 
             if (matchesCat && matchesQuery) {
                 filtered.add(item);
@@ -469,12 +590,12 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void playEntranceAnimations() {
-        // Staggered slide up & fade in animations
         View[] animatedViews = {
                 findViewById(R.id.layoutHeroTypography),
                 findViewById(R.id.layoutSearchBar),
                 findViewById(R.id.recyclerCategories),
                 findViewById(R.id.cardPromoBanner),
+                findViewById(R.id.recyclerRestaurants),
                 findViewById(R.id.recyclerPopularFoods)
         };
 

@@ -59,6 +59,7 @@ public class Order implements Serializable {
         public String getFoodName() { return foodName; }
         public int getQuantity() { return quantity; }
         public double getPriceAtPurchase() { return priceAtPurchase; }
+        public double getPrice() { return priceAtPurchase; }
         public double getSubtotal() { return subtotal; }
     }
 

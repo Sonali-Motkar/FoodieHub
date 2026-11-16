@@ -243,6 +243,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public synchronized int removeFromCart(String foodId) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            return db.delete(TABLE_CART, COL_FOOD_ID + " = ?", new String[]{foodId});
+        } catch (Exception e) {
+            Log.e(TAG, "Error in removeFromCart", e);
+            return -1;
+        }
+    }
+
+    public synchronized int updateCartQuantity(String foodId, int newQty) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            if (newQty <= 0) {
+                return removeFromCart(foodId);
+            }
+            Cursor cursor = db.query(TABLE_CART, new String[]{COL_PRICE}, COL_FOOD_ID + " = ?", new String[]{foodId}, null, null, null);
+            double price = 0.0;
+            if (cursor != null && cursor.moveToFirst()) {
+                price = cursor.getDouble(0);
+                cursor.close();
+            }
+            ContentValues cv = new ContentValues();
+            cv.put(COL_QUANTITY, newQty);
+            cv.put(COL_SUBTOTAL, newQty * price);
+            return db.update(TABLE_CART, cv, COL_FOOD_ID + " = ?", new String[]{foodId});
+        } catch (Exception e) {
+            Log.e(TAG, "Error in updateCartQuantity", e);
+            return -1;
+        }
+    }
+
     public synchronized void clearCart() {
         try {
             SQLiteDatabase db = this.getWritableDatabase();

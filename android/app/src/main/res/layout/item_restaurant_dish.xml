@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Left Info Column -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
+            android:orientation="vertical">
+
+            <!-- Veg / Non-Veg Indicator -->
+            <ImageView
+                android:id="@+id/imgVegNonVeg"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_veg" />
+
+            <!-- Dish Name -->
+            <TextView
+                android:id="@+id/txtDishName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Crispy Veg Burger."
+                android:textColor="#282C3F"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Price -->
+            <TextView
+                android:id="@+id/txtDishPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="₹79"
+                android:textColor="#3E4152"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Rating with Count e.g. ★ 4.2 (188) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtDishStarRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="★ 4.2"
+                    android:textColor="#1BA672"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtDishRatingCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="(188)"
+                    android:textColor="#7E808C"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/txtDishDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:lineSpacingExtra="2dp"
+                android:maxLines="2"
+                android:text="Crispy potato and peas patty topped with special mayonnaise, crisp lettuce and onion."
+                android:textColor="#7E808C"
+                android:textSize="12sp" />
+
+            <!-- More Details link -->
+            <TextView
+                android:id="@+id/txtMoreDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="More Details ›"
+                android:textColor="#686B78"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Right Image & Overlaid ADD Button -->
+        <FrameLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:id="@+id/imgDish"
+                android:layout_width="114dp"
+                android:layout_height="96dp"
+                android:layout_gravity="top|center_horizontal"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_glass_card" />
+
+            <!-- ADD Button Card with Subtitle -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAddAction"
+                    android:layout_width="92dp"
+                    android:layout_height="36dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <!-- Default ADD state -->
+                        <TextView
+                            android:id="@+id/btnDishAdd"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="ADD"
+                            android:textColor="#1BA672"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- Counter state (visible when qty > 0) -->
+                        <LinearLayout
+                            android:id="@+id/layoutDishCounter"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/btnDishMinus"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="-"
+                                android:textColor="#1BA672"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/txtDishQty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="1"
+                                android:textColor="#1BA672"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/btnDishPlus"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="+"
+                                android:textColor="#1BA672"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Customisable Label -->
+                <TextView
+                    android:id="@+id/txtCustomisable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Customisable"
+                    android:textColor="#93959F"
+                    android:textSize="9sp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Subtle Divider Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="16dp"
+        android:background="#E9E9EB" />
+
+</LinearLayout>

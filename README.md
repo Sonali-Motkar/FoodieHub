@@ -132,6 +132,34 @@ npm start
 
 ---
 
+## 🍕 Swiggy-Themed Food Catalog & Pune Restaurant Chains Architecture
+
+The application has been elevated to match modern benchmark food delivery UX (specifically referencing the Swiggy mobile application and web ecosystem):
+
+1. **14 Authentic Swiggy Food Categories ("Order our best food options")**:
+   - `Biryani`, `Pizza`, `Burger`, `North Indian`, `Chinese`, `South Indian`, `Cake`, `Ice Cream`, `Momo`, `Paratha`, `Pasta`, `Khichdi`, `Pav Bhaji`, and `Dosa`.
+   - High-definition circular dish plate imagery with instantaneous client-side filter feedback.
+
+2. **Top Restaurant Chains in Pune**:
+   - Premier franchise cards with `"one Free delivery"` badge overlays:
+     * **Wendy's Burgers** (4.2 ★ · 25-30 mins · *Burgers, Fast Food, wrap* · Ravet)
+     * **KFC** (3.8 ★ · 25-30 mins · *Burgers, Fast Food, Rolls & Wraps* · Puna wale)
+     * **Burger King** (3.9 ★ · 25-30 mins · *Burgers, American* · Tathawade)
+     * **Subway** (4.2 ★ · 15-20 mins · *Sandwich, Salads, wrap, Healthy...* · Tathawade)
+     * **Sairat Biryani** (4.4 ★ · 20-25 mins · *Biryani, North Indian, Kebabs* · Ravet)
+
+3. **Swiggy Restaurant Menu Screen (`RestaurantDetailActivity`)**:
+   - Bestselling combo carousel (e.g. *Teriyaki Crispy Veg Burger Combo*, *Crispy Chicken Burger Combo*).
+   - "Recommended" menu section with official FSSAI Veg (🟢 green square with dot) and Non-Veg (🔴 red square with triangle) indicators.
+   - Interactive `ADD` button with `Customisable` subtitle and in-place `[- 1 +]` stepper micro-interactions.
+   - Persistent sticky bottom Swiggy green cart bar (`1 item added | VIEW CART 🛍️`) syncing with SQLite cart.
+
+4. **Swiggy-Themed Profile & Past Orders**:
+   - "MY ACCOUNT" screen with header gradient, verified customer credentials (**Sonali Motkar**, `+91 832961****`, `sonalimotkar001@gmail.com`), active **FoodieHub One** membership card, and quick tiles (*Saved Address*, *Payment Modes*, *My Refunds*, *FoodieHub Money*).
+   - Past Orders screen featuring past orders from KFC & Sairat Biryani with interactive 5-star ratings for Food and Delivery, `REORDER >` automation, and `Live Track 🛵` radar routing.
+
+---
+
 ## 🔐 Demo Test Accounts
 | Role | Email | Password | Access Scope |
 | :--- | :--- | :--- | :--- |

@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.foodiehub.R;
 import com.foodiehub.models.Category;
 import java.util.List;
@@ -48,18 +50,26 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         Category category = categoryList.get(position);
         holder.txtCategoryName.setText(category.getName());
 
-        int iconRes = getIconForCategory(category.getName());
-        holder.imgIcon.setImageResource(iconRes);
+        String iconVal = category.getIcon();
+        if (iconVal != null && (iconVal.startsWith("http://") || iconVal.startsWith("https://"))) {
+            Glide.with(context)
+                    .load(iconVal)
+                    .transform(new CircleCrop())
+                    .placeholder(R.drawable.ic_category_burger)
+                    .error(R.drawable.ic_category_burger)
+                    .into(holder.imgIcon);
+        } else {
+            int iconRes = getIconForCategory(category.getName());
+            holder.imgIcon.setImageResource(iconRes);
+        }
 
         boolean isSelected = (position == selectedPosition);
         if (isSelected) {
             holder.layoutRoot.setBackgroundResource(R.drawable.bg_glass_card_selected);
             holder.txtCategoryName.setTextColor(Color.WHITE);
-            holder.imgIcon.setColorFilter(Color.WHITE);
         } else {
             holder.layoutRoot.setBackgroundResource(R.drawable.bg_glass_card);
             holder.txtCategoryName.setTextColor(ContextCompat.getColor(context, R.color.text_secondary));
-            holder.imgIcon.setColorFilter(ContextCompat.getColor(context, R.color.text_secondary));
         }
 
         holder.itemView.setOnClickListener(v -> {
@@ -88,9 +98,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         String lower = name.toLowerCase();
         if (lower.contains("burger")) return R.drawable.ic_category_burger;
         if (lower.contains("pizza")) return R.drawable.ic_category_pizza;
-        if (lower.contains("chicken") || lower.contains("asian")) return R.drawable.ic_category_chicken;
+        if (lower.contains("chicken") || lower.contains("asian") || lower.contains("chinese")) return R.drawable.ic_category_chicken;
         if (lower.contains("fries") || lower.contains("snack")) return R.drawable.ic_category_fries;
-        if (lower.contains("drink") || lower.contains("beverage")) return R.drawable.ic_category_drink;
+        if (lower.contains("drink") || lower.contains("beverage") || lower.contains("ice")) return R.drawable.ic_category_drink;
         return R.drawable.ic_category_burger;
     }
 

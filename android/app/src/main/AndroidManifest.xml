@@ -40,6 +40,12 @@
             android:exported="false"
             android:theme="@style/Theme.FoodieHub.NoActionBar" />
 
+        <!-- User Profile & Account Activity -->
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FoodieHub.NoActionBar" />
+
         <!-- Main Discovery & Food Catalog -->
         <activity
             android:name=".activities.MainActivity"
@@ -49,6 +55,12 @@
         <activity
             android:name=".activities.FoodDetailActivity"
             android:exported="false" />
+
+        <!-- Swiggy Restaurant Details & Menu Screen -->
+        <activity
+            android:name=".activities.RestaurantDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FoodieHub.NoActionBar" />
 
         <!-- Shopping Cart Activity -->
         <activity
