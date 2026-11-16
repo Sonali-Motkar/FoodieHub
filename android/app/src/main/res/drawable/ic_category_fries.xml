@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="28dp"
+    android:height="28dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Box -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M6,10l1.5,10.5c0.1,0.8 0.8,1.5 1.7,1.5h5.6c0.9,0 1.6,-0.7 1.7,-1.5L18,10c-1.5,0.7 -3.5,1.2 -6,1.2S7.5,10.7 6,10z" />
+    <!-- Fries sticks -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M7,3h2v7H7V3zm4,-1h2v8h-2V2zm4,2h2v6h-2V4zm-7,1h1.5v5H8V5zm8,1h1.5v4H16V6z" />
+</vector>

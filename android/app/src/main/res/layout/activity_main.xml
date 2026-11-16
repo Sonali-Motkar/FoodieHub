@@ -4,280 +4,497 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light">
+    android:background="@drawable/bg_dark_gradient">
 
+    <!-- Scrollable Main Content -->
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="96dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="18dp">
 
-            <!-- Top Header & App Bar -->
-            <LinearLayout
+            <!-- Top Header: Menu Button & Profile Avatar -->
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/card_background"
-                android:elevation="2dp"
-                android:orientation="vertical"
-                android:paddingHorizontal="16dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="12dp">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <FrameLayout
+                    android:id="@+id/btnGlassMenu"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_glass_circle"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_glass_menu" />
+                </FrameLayout>
+
+                <!-- Profile Avatar on Right with notification dot -->
+                <RelativeLayout
+                    android:id="@+id/layoutProfileHeader"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtGreeting"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Welcome, Sonali 👋"
-                            android:textColor="@color/text_primary"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="What would you like to eat today?"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <!-- Order History Icon -->
-                    <ImageButton
-                        android:id="@+id/btnNavHistory"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@android:drawable/ic_menu_recent_history"
-                        android:contentDescription="History" />
-
-                    <!-- Cart Icon with Badge Container -->
                     <FrameLayout
-                        android:id="@+id/btnNavCart"
+                        android:id="@+id/btnNavLogout"
                         android:layout_width="44dp"
                         android:layout_height="44dp"
-                        android:layout_marginStart="4dp">
-
-                        <ImageView
-                            android:layout_width="26dp"
-                            android:layout_height="26dp"
-                            android:layout_gravity="center"
-                            android:src="@android:drawable/ic_menu_agenda" />
+                        android:background="@drawable/bg_glass_circle"
+                        android:clickable="true"
+                        android:focusable="true">
 
                         <TextView
-                            android:id="@+id/txtCartBadgeCount"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="top|end"
-                            android:background="@drawable/bg_badge"
-                            android:gravity="center"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="11sp"
-                            android:textStyle="bold"
-                            android:visibility="gone" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="👩‍💻"
+                            android:textSize="20sp" />
                     </FrameLayout>
 
-                    <!-- Logout Button -->
-                    <ImageButton
-                        android:id="@+id/btnNavLogout"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="2dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@android:drawable/ic_lock_power_off"
-                        android:contentDescription="Logout" />
+                    <!-- Red Notification Dot -->
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignEnd="@+id/btnNavLogout"
+                        android:layout_alignTop="@+id/btnNavLogout"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@drawable/bg_glass_circle_orange" />
+                </RelativeLayout>
 
-                </LinearLayout>
+            </RelativeLayout>
 
-                <!-- Search Input Bar -->
-                <EditText
-                    android:id="@+id/edtSearchFood"
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_rounded_input"
-                    android:drawableStart="@android:drawable/ic_menu_search"
-                    android:drawablePadding="10dp"
-                    android:hint="@string/search_hint"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:paddingHorizontal="14dp"
-                    android:textSize="14sp" />
+            <!-- Hero Typography: Good Food Good Mood! -->
+            <LinearLayout
+                android:id="@+id/layoutHeroTypography"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/txtGreeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hi, Sonali 👋"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/txtHeroHeadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:lineSpacingExtra="2dp"
+                    android:text="Good Food\nGood Mood!"
+                    android:textColor="@color/text_white"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Promotional Banner Card -->
-            <androidx.cardview.widget.CardView
+            <!-- Search Bar with Tune / Filter Icon -->
+            <LinearLayout
+                android:id="@+id/layoutSearchBar"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="14dp"
-                app:cardBackgroundColor="@color/primary"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
+                android:layout_height="52dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_glass_search"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp">
 
-                <LinearLayout
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    app:tint="@color/text_secondary" />
+
+                <EditText
+                    android:id="@+id/edtSearchFood"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="Search your favorite food"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:textColor="@color/text_white"
+                    android:textColorHint="@color/text_muted"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/btnFilterTune"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_glass_tune"
+                    app:tint="@color/text_secondary" />
+            </LinearLayout>
+
+            <!-- Category Horizontal Carousel -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_category_glass" />
+
+            <!-- Limited Time Offer Hero Promo Banner -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardPromoBanner"
+                android:layout_width="match_parent"
+                android:layout_height="146dp"
+                android:layout_marginTop="22dp"
+                app:cardBackgroundColor="#23212E"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="6dp">
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
+                    android:background="@drawable/bg_glass_card_glow"
                     android:padding="16dp">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="#FFE0B2"
-                            android:paddingHorizontal="8dp"
-                            android:paddingVertical="2dp"
-                            android:text="PROMO OFFER"
-                            android:textColor="@color/primary_dark"
-                            android:textSize="10sp"
+                            android:text="🔥 Limited Time Offer"
+                            android:textColor="#FFA000"
+                            android:textSize="11sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="Free Delivery on orders above ₹399!"
-                            android:textColor="@color/white"
-                            android:textSize="15sp"
+                            android:text="Spicy Burger\nCombo"
+                            android:textColor="@color/text_white"
+                            android:textSize="19sp"
                             android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/btnPromoOrderNow"
+                            android:layout_width="105dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_pill_selected"
+                            android:elevation="2dp"
+                            android:text="Order Now"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <!-- 20% OFF Badge & Combo Graphic -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="Use code: FREEDEL"
-                            android:textColor="#FFE0B2"
-                            android:textSize="12sp" />
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_glass_circle"
+                            android:paddingHorizontal="7dp"
+                            android:paddingVertical="4dp"
+                            android:text="20%\nOFF"
+                            android:textAlignment="center"
+                            android:textColor="#FFA000"
+                            android:textSize="9sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imgPromoCombo"
+                            android:layout_width="120dp"
+                            android:layout_height="115dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/bg_glass_card" />
+
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🛵"
-                        android:textSize="48sp" />
+                </RelativeLayout>
 
-                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Horizontal Category Chips -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Categories"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerCategories"
+            <!-- Popular Now Section Header -->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="Popular Now"
+                    android:textColor="@color/text_white"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtViewAllPopular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="View All"
+                    android:textColor="@color/accent"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <!-- Popular Now Horizontal Carousel -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerPopularFoods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingHorizontal="12dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_food_popular_glass" />
 
-            <!-- Food Dishes RecyclerView -->
+            <!-- All Delicious Menu Dishes Header -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Popular Dishes"
-                android:textColor="@color/text_primary"
-                android:textSize="16sp"
+                android:layout_marginTop="22dp"
+                android:text="Explore All Dishes"
+                android:textColor="@color/text_white"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <!-- Vertical Dish Listing -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerFoods"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:nestedScrollingEnabled="false"
-                android:paddingBottom="80dp" />
+                tools:listitem="@layout/item_food_card" />
 
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Floating Bottom Checkout Pill when Cart is not empty -->
+    <!-- Floating Sticky Cart Banner (Appears when items in cart) -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardFloatingCart"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="80dp"
         android:visibility="gone"
-        app:cardBackgroundColor="@color/primary"
+        app:cardBackgroundColor="#FF6D00"
         app:cardCornerRadius="28dp"
-        app:cardElevation="8dp">
+        app:cardElevation="10dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:background="@drawable/bg_glass_card_selected"
             android:paddingHorizontal="20dp">
 
             <TextView
                 android:id="@+id/txtFloatingCartCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2 Items"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="1 Item"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="18dp"
-                android:layout_marginHorizontal="12dp"
-                android:background="#FFAB91" />
-
             <TextView
                 android:id="@+id/txtFloatingCartTotal"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="₹ 477.00"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:layout_toEndOf="@+id/txtFloatingCartCount"
+                android:text="| ₹ 189.00"
                 android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View Cart ➔"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="View Cart →"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Floating Glassmorphic Bottom Navigation Bar -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="12dp"
+        app:cardBackgroundColor="#00000000"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_bottom_nav_bar"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="14dp">
+
+            <!-- Nav 1: Home (Selected) -->
+            <LinearLayout
+                android:id="@+id/navBtnHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/navIconHome"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_nav_home_glass"
+                    app:tint="@color/accent" />
+
+                <TextView
+                    android:id="@+id/navTextHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Home"
+                    android:textColor="@color/accent"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Nav 2: Offers -->
+            <LinearLayout
+                android:id="@+id/navBtnOffers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_nav_offers_glass"
+                    app:tint="@color/text_muted" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Offers"
+                    android:textColor="@color/text_muted"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- Nav 3: Orders (Live Delivery Tracking & History) -->
+            <LinearLayout
+                android:id="@+id/navBtnOrders"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_nav_orders_glass"
+                    app:tint="@color/text_muted" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Orders"
+                    android:textColor="@color/text_muted"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- Nav 4: Favorite -->
+            <LinearLayout
+                android:id="@+id/navBtnFavorites"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_nav_fav_glass"
+                    app:tint="@color/text_muted" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Favorite"
+                    android:textColor="@color/text_muted"
+                    android:textSize="10sp" />
+            </LinearLayout>
 
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
