@@ -61,6 +61,12 @@
             android:exported="false"
             android:theme="@style/Theme.FoodieHub.NoActionBar" />
 
+        <!-- Live Order Tracking (Swiggy Style Map & Delivery) -->
+        <activity
+            android:name=".activities.OrderTrackingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FoodieHub.NoActionBar" />
+
         <!-- Customer Order History -->
         <activity
             android:name=".activities.OrderHistoryActivity"

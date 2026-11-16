@@ -76,9 +76,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="12dp"
-        android:backgroundTint="#F1F3F5"
-        android:text="View Order Status"
-        android:textColor="@color/text_primary"
+        android:backgroundTint="#FF5722"
+        android:text="Track Live Delivery 🛵"
+        android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnSuccessContinue" />

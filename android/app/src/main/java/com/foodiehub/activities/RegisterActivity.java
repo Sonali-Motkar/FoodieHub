@@ -42,6 +42,13 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegSubmit);
         txtBackToLogin = findViewById(R.id.txtBackToLogin);
 
+        // Pre-fill user details for smooth experience and project demo
+        edtName.setText("Sonali Motkar");
+        edtEmail.setText("sonalimotkar001@gmail.com");
+        edtPhone.setText("+91 832961****");
+        edtPassword.setText("Pass@123");
+        edtAddress.setText("Flat 402, Green Palms, Kothrud, Pune - 411038");
+
         btnRegister.setOnClickListener(v -> performRegistration());
         txtBackToLogin.setOnClickListener(v -> finish());
     }

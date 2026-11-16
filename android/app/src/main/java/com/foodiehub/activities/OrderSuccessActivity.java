@@ -29,7 +29,10 @@ public class OrderSuccessActivity extends AppCompatActivity {
         txtAmount.setText(String.format("Total Amount Paid: ₹ %.2f", total));
 
         btnHistory.setOnClickListener(v -> {
-            startActivity(new Intent(OrderSuccessActivity.this, OrderHistoryActivity.class));
+            Intent intent = new Intent(OrderSuccessActivity.this, OrderTrackingActivity.class);
+            intent.putExtra("ORDER_ID", orderId);
+            intent.putExtra("ORDER_TOTAL", total);
+            startActivity(intent);
             finish();
         });
 

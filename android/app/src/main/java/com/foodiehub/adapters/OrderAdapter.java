@@ -1,15 +1,18 @@
 package com.foodiehub.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.foodiehub.R;
+import com.foodiehub.activities.OrderTrackingActivity;
 import com.foodiehub.models.Order;
 import java.util.List;
 
@@ -72,6 +75,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         } else {
             holder.txtItemsSummary.setText("Custom order items");
         }
+
+        holder.btnTrackOrder.setOnClickListener(v -> {
+            Intent intent = new Intent(context, OrderTrackingActivity.class);
+            intent.putExtra("ORDER_ID", order.getOrderId());
+            intent.putExtra("DELIVERY_ADDRESS", order.getDeliveryAddress());
+            intent.putExtra("ORDER_TOTAL", order.getTotalAmount());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -81,6 +92,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     static class OrderViewHolder extends RecyclerView.ViewHolder {
         TextView txtOrderId, txtOrderDate, txtStatus, txtItemsSummary, txtTotalAmount, txtAddress;
+        Button btnTrackOrder;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +102,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             txtItemsSummary = itemView.findViewById(R.id.txtHistoryItemsSummary);
             txtTotalAmount = itemView.findViewById(R.id.txtHistoryTotal);
             txtAddress = itemView.findViewById(R.id.txtHistoryAddress);
+            btnTrackOrder = itemView.findViewById(R.id.btnTrackOrder);
         }
     }
 }

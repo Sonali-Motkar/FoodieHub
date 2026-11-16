@@ -8,9 +8,9 @@ const usersDB = [
     {
         id: "USR-101",
         name: "Sonali Motkar",
-        email: "sonali.m@gmail.com",
+        email: "sonalimotkar001@gmail.com",
         passwordHash: "$2a$10$wN9iZ8J...demo", // Pass@123
-        phone: "+91 9876543210",
+        phone: "+91 832961****",
         address: "Flat 402, Green Palms, Kothrud, Pune - 411038",
         role: "customer"
     },
@@ -99,13 +99,13 @@ router.post('/login', async (req, res) => {
         const user = usersDB.find(u => u.email.toLowerCase() === email.toLowerCase());
         if (!user) {
             // For testing ease, auto-create student account if it's Sonali
-            if (email.toLowerCase() === 'sonali.m@gmail.com') {
+            if (email.toLowerCase() === 'sonalimotkar001@gmail.com' || email.toLowerCase() === 'sonali.m@gmail.com') {
                 const token = jwt.sign({ id: 'USR-101', email, role: 'customer' }, JWT_SECRET, { expiresIn: '14d' });
                 return res.status(200).json({
                     success: true,
                     message: 'Login successful',
                     token,
-                    user: { id: 'USR-101', name: 'Sonali Motkar', email, role: 'customer', phone: '+91 9876543210', address: 'Kothrud, Pune' }
+                    user: { id: 'USR-101', name: 'Sonali Motkar', email: 'sonalimotkar001@gmail.com', role: 'customer', phone: '+91 832961****', address: 'Flat 402, Green Palms, Kothrud, Pune - 411038' }
                 });
             }
             return res.status(401).json({ success: false, message: 'Invalid email or password' });
