@@ -186,7 +186,9 @@ public class MainActivity extends AppCompatActivity implements
 
         if (txtSeeAllRestaurants != null) {
             txtSeeAllRestaurants.setOnClickListener(v -> {
-                Toast.makeText(this, "Showing top restaurant chains in Pune", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, CategoryExplorerActivity.class);
+                intent.putExtra("CATEGORY_NAME", selectedCategory != null ? selectedCategory : "Biryani");
+                startActivity(intent);
             });
         }
     }
@@ -333,6 +335,42 @@ public class MainActivity extends AppCompatActivity implements
                 "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8",
                 true,
                 "ITEMS AT ₹149"
+        ));
+
+        restaurantList.add(new Restaurant(
+                "REST-BIKKGANE",
+                "Bikkgane Biryani",
+                4.2,
+                "30-35 mins",
+                "Biryani, Hyderabadi, Andhra, Rolls",
+                "Hinjewadi",
+                "https://images.unsplash.com/photo-1589302168068-964664d93dc0",
+                true,
+                "ITEMS AT ₹149"
+        ));
+
+        restaurantList.add(new Restaurant(
+                "REST-DOMINOS",
+                "Domino's Pizza",
+                4.3,
+                "20-25 mins",
+                "Pizzas, Fast Food, Garlic Bread",
+                "Tathawade",
+                "https://images.unsplash.com/photo-1513104890138-7c749659a591",
+                true,
+                "MEALS FROM ₹99"
+        ));
+
+        restaurantList.add(new Restaurant(
+                "REST-BAKINGO",
+                "Bakingo",
+                4.4,
+                "30-35 mins",
+                "Bakery, Desserts, Beverages, Snacks",
+                "Hinjawadi",
+                "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+                true,
+                "FREE CANDLE SET"
         ));
 
         restaurantAdapter = new RestaurantAdapter(this, restaurantList, this);
@@ -494,6 +532,11 @@ public class MainActivity extends AppCompatActivity implements
     public void onCategorySelected(Category category) {
         selectedCategory = category.getName();
         filterFoods(edtSearch.getText().toString());
+
+        // Launch dedicated Swiggy Collection Stores Explorer for Biryani, Pizza, Pastry, Cakes, etc.
+        Intent intent = new Intent(MainActivity.this, CategoryExplorerActivity.class);
+        intent.putExtra("CATEGORY_NAME", category.getName());
+        startActivity(intent);
     }
 
     @Override

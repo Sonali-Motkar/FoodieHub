@@ -158,6 +158,17 @@ The application has been elevated to match modern benchmark food delivery UX (sp
    - "MY ACCOUNT" screen with header gradient, verified customer credentials (**Sonali Motkar**, `+91 832961****`, `sonalimotkar001@gmail.com`), active **FoodieHub One** membership card, and quick tiles (*Saved Address*, *Payment Modes*, *My Refunds*, *FoodieHub Money*).
    - Past Orders screen featuring past orders from KFC & Sairat Biryani with interactive 5-star ratings for Food and Delivery, `REORDER >` automation, and `Live Track 🛵` radar routing.
 
+5. **Swiggy Category Collection Explorer (`CategoryExplorerActivity`)**:
+   - Dedicated Collection Explorer matching `https://www.swiggy.com/collections/<id>` triggered by tapping any food category or the "View All" button.
+   - Dynamic collection subtitles (e.g. *"Taste these delectable classics, delectable biryanis to make your day"*, *"Fall in love with these perfect slices of heavenly pastries"*).
+   - Swiggy-identical filter chips carousel (`Filter ⚙️`, `Sort By ⌄`, `⚡ 10-25 Mins`, `🟢 Pure Veg`, `★ Ratings 4.0+`, `₹ Under 300`).
+   - Authentic Pune specialty stores:
+     * **Biryani**: Bikkgane Biryani (Hinjewadi), Behrouz Biryani, The Biryani Life, Sairat Biryani, Biryani Badshah, 1881 Dum House, ITC Master Chef Creations.
+     * **Pizza**: Domino's Pizza, Ovenstory Pizza, Pizza Hut, La Pino'z, Mojo Pizza - 2X Toppings.
+     * **Pastry & Cakes**: Bakingo, Cakeman (Pimple Saudagar), Sweet Truth - Cake and Desserts, ITC Sunfeast Baked Creations.
+     * **North Indian**: ITC Aashirvaad Soul Creations, Christy Restaurant, ITC Master Chef Creations, Rollsking.
+   - Dynamic restaurant menu adaptation in `RestaurantDetailActivity` serving authentic combos, main dishes, and sides tailored specifically to each cuisine.
+
 ---
 
 ## 🔐 Demo Test Accounts

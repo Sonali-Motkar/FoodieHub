@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dark_gradient">
+
+    <!-- Top Dark Glass AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#211E2B"
+        android:elevation="6dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:paddingHorizontal="16dp">
+
+            <!-- Back Button in Dark Glass Circle -->
+            <FrameLayout
+                android:id="@+id/btnCategoryBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_glass_circle"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_glass_back"
+                    app:tint="@color/text_white" />
+            </FrameLayout>
+
+            <!-- Search Field in Top Bar -->
+            <LinearLayout
+                android:id="@+id/layoutCategorySearch"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="12dp"
+                android:layout_toEndOf="@+id/btnCategoryBack"
+                android:layout_toStartOf="@+id/btnCategoryCart"
+                android:background="@drawable/bg_glass_search"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="12dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    app:tint="@color/text_secondary" />
+
+                <EditText
+                    android:id="@+id/edtCategorySearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Search restaurants &amp; dishes"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textColor="@color/text_white"
+                    android:textColorHint="@color/text_muted"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Quick Cart Access Button -->
+            <FrameLayout
+                android:id="@+id/btnCategoryCart"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_glass_circle"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_orders_glass"
+                    app:tint="@color/text_white" />
+            </FrameLayout>
+
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Scrollable Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollCategory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="88dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp">
+
+            <!-- Category Big Title & Subtitle Matching Reference Screenshots -->
+            <TextView
+                android:id="@+id/txtCategoryTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biryani"
+                android:textColor="@color/text_white"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtCategorySubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Taste these delectable classics, delectable biryanis to make your day."
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+
+            <!-- Horizontal Filter Chips Row (Matching Swiggy Filters) -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="false"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Filter Button -->
+                    <TextView
+                        android:id="@+id/chipFilter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:background="@drawable/bg_glass_card"
+                        android:gravity="center"
+                        android:paddingHorizontal="14dp"
+                        android:text="Filter ⚙️"
+                        android:textColor="@color/text_white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <!-- Sort By -->
+                    <TextView
+                        android:id="@+id/chipSortBy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_glass_card"
+                        android:gravity="center"
+                        android:paddingHorizontal="14dp"
+                        android:text="Sort By ⌄"
+                        android:textColor="@color/text_white"
+                        android:textSize="12sp" />
+
+                    <!-- Fast 10-20 Mins Delivery -->
+                    <TextView
+                        android:id="@+id/chipFastDelivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_glass_card"
+                        android:gravity="center"
+                        android:paddingHorizontal="14dp"
+                        android:text="⚡ 10-25 Mins"
+                        android:textColor="#FFA000"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <!-- Pure Veg Filter -->
+                    <TextView
+                        android:id="@+id/chipPureVeg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_glass_card"
+                        android:gravity="center"
+                        android:paddingHorizontal="14dp"
+                        android:text="🟢 Pure Veg"
+                        android:textColor="#00E676"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <!-- Ratings 4.0+ -->
+                    <TextView
+                        android:id="@+id/chipRating4Plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_glass_card"
+                        android:gravity="center"
+                        android:paddingHorizontal="14dp"
+                        android:text="★ Ratings 4.0+"
+                        android:textColor="@color/text_white"
+                        android:textSize="12sp" />
+
+                    <!-- Budget friendly -->
+                    <TextView
+                        android:id="@+id/chipCostUnder300"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_glass_card"
+                        android:gravity="center"
+                        android:paddingHorizontal="14dp"
+                        android:text="₹ Under 300"
+                        android:textColor="@color/text_white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Store Count Header: "118 Restaurants to explore" -->
+            <TextView
+                android:id="@+id/txtRestaurantCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp"
+                android:text="118 Restaurants to explore in Pune"
+                android:textColor="@color/text_white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Restaurants Grid/List for this Collection -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerCategoryStores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Sticky Bottom Cart Floating Pill (Appears when items are in cart) -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCategoryStickyCart"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#1BA672"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="10dp"
+        tools:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="18dp">
+
+            <TextView
+                android:id="@+id/txtCategoryStickyCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="1 ITEM ADDED"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="VIEW CART 🛒"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

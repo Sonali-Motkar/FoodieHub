@@ -56,6 +56,12 @@
             android:name=".activities.FoodDetailActivity"
             android:exported="false" />
 
+        <!-- Swiggy Collection / Category Stores Explorer -->
+        <activity
+            android:name=".activities.CategoryExplorerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FoodieHub.NoActionBar" />
+
         <!-- Swiggy Restaurant Details & Menu Screen -->
         <activity
             android:name=".activities.RestaurantDetailActivity"
