@@ -396,7 +396,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/card_background"
+        android:background="#1B1924"
         android:elevation="12dp"
         android:orientation="horizontal"
         android:padding="16dp">
@@ -407,9 +407,10 @@
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:backgroundTint="#F1F5F9"
-            android:text="Fast-Forward Stage ⏩"
-            android:textColor="@color/text_primary"
+            android:background="@drawable/bg_glass_card"
+            android:text="Fast-Forward ⏩"
+            android:textAllCaps="false"
+            android:textColor="@color/text_white"
             android:textSize="13sp"
             android:textStyle="bold" />
 
@@ -419,8 +420,9 @@
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/primary"
+            android:background="@drawable/bg_pill_selected"
             android:text="Return Home 🏠"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
