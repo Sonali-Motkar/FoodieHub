@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FoodieHub</string>
+    <string name="app_tagline">Delicious Food Delivered Fast</string>
+    <string name="login_title">Welcome Back!</string>
+    <string name="register_title">Create Account</string>
+    <string name="search_hint">Search dishes, cuisines, burgers...</string>
+    <string name="cart_title">My Shopping Cart</string>
+    <string name="order_history_title">My Orders</string>
+    <string name="admin_title">FoodieHub Admin</string>
+    <string name="currency_symbol">₹</string>
+</resources>
