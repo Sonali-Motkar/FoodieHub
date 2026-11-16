@@ -41,15 +41,9 @@ public class OrderHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
 
-        Toolbar toolbar = findViewById(R.id.historyToolbar);
-        if (toolbar != null) {
-            try {
-                setSupportActionBar(toolbar);
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                }
-            } catch (Exception ignored) {}
-            toolbar.setNavigationOnClickListener(v -> finish());
+        View btnBack = findViewById(R.id.btnOrderHistoryBack);
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
         }
 
         dbHelper = new DatabaseHelper(this);

@@ -44,8 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Pre-fill user details for smooth experience and project demo
         edtName.setText("Sonali Motkar");
-        edtEmail.setText("sonalimotkar001@gmail.com");
-        edtPhone.setText("+91 832961****");
+        edtEmail.setText("sonalimotkar4@gmail.com");
+        edtPhone.setText("+91 8329611364");
         edtPassword.setText("Pass@123");
         edtAddress.setText("Flat 402, Green Palms, Kothrud, Pune - 411038");
 

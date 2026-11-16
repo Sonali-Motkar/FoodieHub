@@ -4,28 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="5dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
+    android:layout_marginVertical="6dp"
+    app:cardBackgroundColor="#211E2B"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_glass_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/imgCartThumb"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/bg_rounded_card" />
+            android:background="@drawable/bg_glass_card" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="12dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -34,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Paneer Tikka Burger"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/text_white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -53,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:text="₹ 378.00"
-                android:textColor="@color/primary"
+                android:textColor="#FFA000"
                 android:textStyle="bold"
                 android:textSize="13sp" />
         </LinearLayout>
@@ -67,11 +69,12 @@
 
             <ImageButton
                 android:id="@+id/btnQtyDecrement"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/bg_rounded_input"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_glass_circle"
                 android:src="@android:drawable/ic_input_delete"
-                android:contentDescription="Minus" />
+                android:contentDescription="Minus"
+                app:tint="@color/text_white" />
 
             <TextView
                 android:id="@+id/txtCartItemQty"
@@ -79,26 +82,28 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="2"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/text_white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/btnQtyIncrement"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/bg_primary_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_pill_selected"
                 android:src="@android:drawable/ic_input_add"
-                android:contentDescription="Plus" />
+                android:contentDescription="Plus"
+                app:tint="@color/white" />
 
             <ImageButton
                 android:id="@+id/btnCartItemDelete"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginStart="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_delete"
-                android:contentDescription="Delete item" />
+                android:contentDescription="Delete item"
+                app:tint="@color/text_muted" />
 
         </LinearLayout>
 

@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
+    android:background="@drawable/bg_dark_gradient"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/adminToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/card_background"
+        android:background="#211E2B"
         android:elevation="4dp"
         app:title="FoodieHub Admin Portal"
-        app:titleTextColor="@color/text_primary" />
+        app:titleTextColor="@color/text_white" />
 
     <!-- Metrics Cards Row -->
     <LinearLayout
@@ -27,11 +27,13 @@
             android:layout_height="90dp"
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#211E2B"
+            app:cardCornerRadius="16dp"
             app:cardElevation="3dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/bg_glass_card"
                 android:gravity="center"
                 android:orientation="vertical">
                 <TextView
@@ -39,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="32"
-                    android:textColor="@color/primary"
+                    android:textColor="#FFA000"
                     android:textSize="22sp"
                     android:textStyle="bold" />
                 <TextView
@@ -56,11 +58,13 @@
             android:layout_height="90dp"
             android:layout_marginHorizontal="6dp"
             android:layout_weight="1"
-            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#211E2B"
+            app:cardCornerRadius="16dp"
             app:cardElevation="3dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/bg_glass_card"
                 android:gravity="center"
                 android:orientation="vertical">
                 <TextView
@@ -68,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5"
-                    android:textColor="#E65100"
+                    android:textColor="#FF7043"
                     android:textSize="22sp"
                     android:textStyle="bold" />
                 <TextView
@@ -85,11 +89,13 @@
             android:layout_height="90dp"
             android:layout_marginStart="6dp"
             android:layout_weight="1"
-            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="#211E2B"
+            app:cardCornerRadius="16dp"
             app:cardElevation="3dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/bg_glass_card"
                 android:gravity="center"
                 android:orientation="vertical">
                 <TextView
@@ -97,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="₹ 14.8k"
-                    android:textColor="#2E7D32"
+                    android:textColor="#00E676"
                     android:textSize="20sp"
                     android:textStyle="bold" />
                 <TextView
@@ -117,7 +123,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
         android:text="Incoming Customer Orders"
-        android:textColor="@color/text_primary"
+        android:textColor="@color/text_white"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -134,9 +140,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="16dp"
-        android:backgroundTint="#F8D7DA"
+        android:background="@drawable/bg_glass_card"
         android:text="Sign Out (Admin)"
-        android:textColor="#721C24"
+        android:textAllCaps="false"
+        android:textColor="#EF5350"
         android:textStyle="bold" />
 
 </LinearLayout>

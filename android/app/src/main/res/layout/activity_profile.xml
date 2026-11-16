@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F6">
+    android:background="@drawable/bg_dark_gradient">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Reddish-Orange Swiggy Gradient Header -->
+            <!-- Reddish-Orange Swiggy Gradient Header with Glass Feel -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,14 +32,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
+                    <FrameLayout
                         android:id="@+id/btnProfileBack"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_glass_back"
-                        app:tint="@color/white" />
+                        android:background="@drawable/bg_glass_circle"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_glass_back"
+                            app:tint="@color/white" />
+                    </FrameLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -96,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="sonalimotkar4@gmail.com"
+                    android:text="sonalimotkar001@gmail.com"
                     android:textColor="#E0FFFFFF"
                     android:textSize="13sp" />
 
@@ -109,17 +118,18 @@
                 android:orientation="vertical"
                 android:paddingHorizontal="16dp">
 
-                <!-- Swiggy One Membership Card -->
+                <!-- Swiggy One Membership Card in Dark Glass -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="2dp">
+                    app:cardBackgroundColor="#211E2B"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="6dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/bg_glass_card_glow"
                         android:orientation="vertical"
                         android:padding="16dp">
 
@@ -133,8 +143,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="one"
-                                android:textColor="#E64A19"
-                                android:textSize="19sp"
+                                android:textColor="#FFA000"
+                                android:textSize="20sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -145,7 +155,7 @@
                                 android:paddingHorizontal="8dp"
                                 android:paddingVertical="2dp"
                                 android:text="ACTIVE"
-                                android:textColor="#1B5E20"
+                                android:textColor="#00E676"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
 
@@ -158,7 +168,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="⌄"
-                                android:textColor="#666666"
+                                android:textColor="#FFA000"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -166,23 +176,23 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
+                            android:layout_marginTop="8dp"
                             android:text="Unlimited free deliveries, extra discounts &amp; more!"
-                            android:textColor="#212121"
+                            android:textColor="@color/text_white"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginTop="3dp"
                             android:text="Explore all FoodieHub One benefits"
-                            android:textColor="#757575"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Quick 4 Action Cards Grid (Saved Address, Payment Modes, My Refunds, Swiggy Money) -->
+                <!-- Quick 4 Action Cards Grid (Saved Address, Payment Modes, My Refunds, Swiggy Money) in Dark Glass -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -193,10 +203,10 @@
                     <LinearLayout
                         android:id="@+id/btnQuickAddress"
                         android:layout_width="0dp"
-                        android:layout_height="88dp"
+                        android:layout_height="90dp"
                         android:layout_marginEnd="6dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_swiggy_quick_tile"
+                        android:background="@drawable/bg_glass_card"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
@@ -212,10 +222,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="5dp"
                             android:text="Saved\nAddress"
                             android:textAlignment="center"
-                            android:textColor="#333333"
+                            android:textColor="@color/text_white"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -224,10 +234,10 @@
                     <LinearLayout
                         android:id="@+id/btnQuickPayments"
                         android:layout_width="0dp"
-                        android:layout_height="88dp"
+                        android:layout_height="90dp"
                         android:layout_marginHorizontal="3dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_swiggy_quick_tile"
+                        android:background="@drawable/bg_glass_card"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
@@ -243,10 +253,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="5dp"
                             android:text="Payment\nModes"
                             android:textAlignment="center"
-                            android:textColor="#333333"
+                            android:textColor="@color/text_white"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -255,10 +265,10 @@
                     <LinearLayout
                         android:id="@+id/btnQuickRefunds"
                         android:layout_width="0dp"
-                        android:layout_height="88dp"
+                        android:layout_height="90dp"
                         android:layout_marginHorizontal="3dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_swiggy_quick_tile"
+                        android:background="@drawable/bg_glass_card"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
@@ -274,10 +284,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="5dp"
                             android:text="My\nRefunds"
                             android:textAlignment="center"
-                            android:textColor="#333333"
+                            android:textColor="@color/text_white"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -286,10 +296,10 @@
                     <LinearLayout
                         android:id="@+id/btnQuickMoney"
                         android:layout_width="0dp"
-                        android:layout_height="88dp"
+                        android:layout_height="90dp"
                         android:layout_marginStart="6dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_swiggy_quick_tile"
+                        android:background="@drawable/bg_glass_card"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
@@ -305,28 +315,29 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="5dp"
                             android:text="FoodieHub\nMoney"
                             android:textAlignment="center"
-                            android:textColor="#333333"
+                            android:textColor="@color/text_white"
                             android:textSize="11sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <!-- Settings & Features List Card -->
+                <!-- Settings & Features List Card in Dark Glass -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="2dp">
+                    app:cardBackgroundColor="#211E2B"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/bg_glass_card"
                         android:orientation="vertical"
                         android:paddingVertical="6dp">
 
@@ -350,18 +361,18 @@
                                 android:layout_marginStart="12dp"
                                 android:layout_weight="1"
                                 android:text="FoodieHub HDFC Bank Credit Card"
-                                android:textColor="#262626"
+                                android:textColor="@color/text_white"
                                 android:textSize="13sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="›"
-                                android:textColor="#9E9E9E"
+                                android:textColor="#FFA000"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
-                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F2" android:layout_marginHorizontal="16dp" />
+                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#2E2B3A" android:layout_marginHorizontal="16dp" />
 
                         <!-- Item: My Vouchers -->
                         <LinearLayout
@@ -383,18 +394,18 @@
                                 android:layout_marginStart="12dp"
                                 android:layout_weight="1"
                                 android:text="My Vouchers"
-                                android:textColor="#262626"
+                                android:textColor="@color/text_white"
                                 android:textSize="13sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="›"
-                                android:textColor="#9E9E9E"
+                                android:textColor="#FFA000"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
-                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F2" android:layout_marginHorizontal="16dp" />
+                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#2E2B3A" android:layout_marginHorizontal="16dp" />
 
                         <!-- Item: Order Food on Train -->
                         <LinearLayout
@@ -416,18 +427,18 @@
                                 android:layout_marginStart="12dp"
                                 android:layout_weight="1"
                                 android:text="Order Food on Train"
-                                android:textColor="#262626"
+                                android:textColor="@color/text_white"
                                 android:textSize="13sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="›"
-                                android:textColor="#9E9E9E"
+                                android:textColor="#FFA000"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
-                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F2" android:layout_marginHorizontal="16dp" />
+                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#2E2B3A" android:layout_marginHorizontal="16dp" />
 
                         <!-- Item: Favourites -->
                         <LinearLayout
@@ -449,18 +460,18 @@
                                 android:layout_marginStart="12dp"
                                 android:layout_weight="1"
                                 android:text="Favourites"
-                                android:textColor="#262626"
+                                android:textColor="@color/text_white"
                                 android:textSize="13sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="›"
-                                android:textColor="#9E9E9E"
+                                android:textColor="#FFA000"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
-                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F2" android:layout_marginHorizontal="16dp" />
+                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#2E2B3A" android:layout_marginHorizontal="16dp" />
 
                         <!-- Item: Allow restaurants to contact you -->
                         <LinearLayout
@@ -482,14 +493,14 @@
                                 android:layout_marginStart="12dp"
                                 android:layout_weight="1"
                                 android:text="Allow restaurants to contact you"
-                                android:textColor="#262626"
+                                android:textColor="@color/text_white"
                                 android:textSize="13sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="›"
-                                android:textColor="#9E9E9E"
+                                android:textColor="#FFA000"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
@@ -502,15 +513,15 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Floating Sticky Button: "BROWSE PAST ORDERS" matching Swiggy -->
+    <!-- Floating Sticky Button: "BROWSE PAST ORDERS" with Glowing Orange Pill -->
     <Button
         android:id="@+id/btnBrowsePastOrders"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
+        android:layout_width="230dp"
+        android:layout_height="52dp"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/bg_swiggy_black_pill"
-        android:elevation="8dp"
+        android:background="@drawable/bg_pill_selected"
+        android:elevation="10dp"
         android:text="BROWSE PAST ORDERS"
         android:textAllCaps="true"
         android:textColor="@color/white"

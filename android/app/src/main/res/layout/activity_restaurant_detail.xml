@@ -4,36 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F6">
+    android:background="@drawable/bg_dark_gradient">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- Top Swiggy-Style Toolbar -->
+        <!-- Top Dark Glassmorphic Toolbar -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardElevation="2dp">
+            android:layout_height="64dp"
+            app:cardBackgroundColor="#211E2B"
+            app:cardElevation="6dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="14dp">
+                android:paddingHorizontal="16dp">
 
-                <!-- Back Button -->
-                <ImageView
+                <!-- Back Button in Glass Circle -->
+                <FrameLayout
                     android:id="@+id/btnRestDetailBack"
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:background="@drawable/bg_glass_circle"
                     android:clickable="true"
-                    android:focusable="true"
-                    android:src="@drawable/ic_glass_back"
-                    app:tint="#282C3F" />
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_glass_back"
+                        app:tint="@color/text_white" />
+                </FrameLayout>
 
                 <!-- Restaurant Name & Delivery Time in Center/Left -->
                 <LinearLayout
@@ -49,31 +56,38 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Wendy's Burgers"
-                        android:textColor="#282C3F"
-                        android:textSize="15sp"
+                        android:textColor="@color/text_white"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txtHeaderRestTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:text="25-30 mins"
-                        android:textColor="#7E808C"
+                        android:layout_marginTop="2dp"
+                        android:text="25-30 mins • Ravet, Pune"
+                        android:textColor="#FFA000"
                         android:textSize="11sp" />
                 </LinearLayout>
 
-                <!-- Search Icon -->
-                <ImageView
+                <!-- Search Icon in Glass Circle -->
+                <FrameLayout
                     android:id="@+id/btnRestSearch"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
+                    android:background="@drawable/bg_glass_circle"
                     android:clickable="true"
-                    android:focusable="true"
-                    android:src="@android:drawable/ic_menu_search"
-                    app:tint="#282C3F" />
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_menu_search"
+                        app:tint="@color/text_white" />
+                </FrameLayout>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -90,90 +104,85 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="16dp">
 
-                <!-- Combos Horizontal Carousel Header & List -->
+                <!-- Combos Horizontal Carousel Section -->
                 <LinearLayout
                     android:id="@+id/layoutCombosSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical"
-                    android:paddingTop="14dp"
-                    android:paddingBottom="12dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="Bestselling Combos"
-                        android:textColor="#282C3F"
-                        android:textSize="15sp"
+                        android:text="🔥 Bestselling Combos"
+                        android:textColor="@color/text_white"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerCombos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
-                        android:paddingStart="16dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_restaurant_combo" />
 
                 </LinearLayout>
 
-                <!-- Spacer -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="#F0F0F2" />
-
-                <!-- Recommended Section Header -->
-                <LinearLayout
-                    android:id="@+id/layoutRecommendedHeader"
+                <!-- Recommended Section Header Card -->
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="16dp">
+                    android:layout_marginTop="20dp"
+                    app:cardBackgroundColor="#211E2B"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="4dp">
 
-                    <TextView
-                        android:id="@+id/txtRecommendedTitle"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:id="@+id/layoutRecommendedHeader"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Recommended (20)"
-                        android:textColor="#282C3F"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:background="@drawable/bg_glass_card"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="14dp">
 
-                    <TextView
-                        android:id="@+id/txtRecommendedChevron"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="▲"
-                        android:textColor="#282C3F"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtRecommendedTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Recommended (5)"
+                            android:textColor="@color/text_white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                <!-- Thin separator -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E9E9EB" />
+                        <TextView
+                            android:id="@+id/txtRecommendedChevron"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="▲"
+                            android:textColor="#FFA000"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
                 <!-- Recommended Food Items Vertical List -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerRecommendedDishes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:layout_marginTop="10dp"
                     android:nestedScrollingEnabled="false"
                     tools:listitem="@layout/item_restaurant_dish" />
 
@@ -181,16 +190,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#F4F4F6"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/bg_glass_card"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="🌿 100% Pure Food Safety Assured • FSSAI Lic. 11522036000214"
-                        android:textColor="#9E9EAF"
-                        android:textSize="11sp" />
+                        android:textColor="#81C784"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txtRestDetailAddress"
@@ -198,8 +210,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Wendy's Burgers, Ravet, Pune, Maharashtra 412101"
-                        android:textColor="#B0B0C0"
-                        android:textSize="10sp" />
+                        android:textColor="@color/text_muted"
+                        android:textSize="11sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -208,21 +220,22 @@
 
     </LinearLayout>
 
-    <!-- Floating Round "MENU 🍽️" Button (bottom right above bottom cart bar) -->
+    <!-- Floating Round "MENU 🍽️" Button (Dark Glass Circle) -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardFloatingMenuPill"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="70dp"
-        app:cardBackgroundColor="#282C3F"
-        app:cardCornerRadius="36dp"
-        app:cardElevation="8dp">
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="72dp"
+        app:cardBackgroundColor="#211E2B"
+        app:cardCornerRadius="33dp"
+        app:cardElevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/bg_glass_card_glow"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -230,7 +243,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="🍴"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -238,27 +251,30 @@
                 android:layout_marginTop="1dp"
                 android:letterSpacing="0.05"
                 android:text="MENU"
-                android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textColor="#FFA000"
+                android:textSize="9sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Sticky Bottom Green Swiggy Cart Bar (Exact match to screenshot 3) -->
+    <!-- Sticky Bottom Green Swiggy Cart Bar -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardStickyBottomCart"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="56dp"
         android:layout_gravity="bottom"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="12dp"
         android:visibility="gone"
         app:cardBackgroundColor="#1BA672"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="10dp">
+        app:cardCornerRadius="28dp"
+        app:cardElevation="12dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="18dp">
+            android:background="@drawable/bg_pill_selected"
+            android:paddingHorizontal="20dp">
 
             <TextView
                 android:id="@+id/txtStickyCartCount"

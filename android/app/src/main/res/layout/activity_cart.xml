@@ -3,17 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
+    android:background="@drawable/bg_dark_gradient"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/cartToolbar"
+    <!-- Top Dark Glassmorphic Toolbar -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/card_background"
-        android:elevation="3dp"
-        app:title="Shopping Cart"
-        app:titleTextColor="@color/text_primary" />
+        android:layout_height="60dp"
+        app:cardBackgroundColor="#211E2B"
+        app:cardElevation="6dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp">
+
+            <FrameLayout
+                android:id="@+id/btnCartBack"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_glass_circle"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_glass_back"
+                    app:tint="@color/text_white" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp"
+                android:layout_toEndOf="@+id/btnCartBack"
+                android:text="Shopping Cart"
+                android:textColor="@color/text_white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -25,15 +60,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="12dp">
+            android:padding="16dp">
 
-            <!-- Cart Items List -->
+            <!-- Cart Items List Header -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="6dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
                 android:text="Order Items"
                 android:textColor="@color/text_secondary"
                 android:textSize="13sp"
@@ -49,22 +84,23 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="#211E2B"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_glass_card"
                     android:orientation="vertical"
-                    android:padding="14dp">
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="📍 Delivery Address"
-                        android:textColor="@color/text_primary"
+                        android:textColor="@color/text_white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -72,12 +108,14 @@
                         android:id="@+id/edtDeliveryAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/bg_rounded_input"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_glass_search"
                         android:gravity="top|start"
                         android:hint="Enter delivery address, flat/building, street"
                         android:lines="3"
                         android:padding="12dp"
+                        android:textColor="@color/text_white"
+                        android:textColorHint="@color/text_muted"
                         android:textSize="13sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -86,22 +124,23 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="#211E2B"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_glass_card"
                     android:orientation="vertical"
-                    android:padding="14dp">
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="💳 Payment Options"
-                        android:textColor="@color/text_primary"
+                        android:textColor="@color/text_white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -109,7 +148,7 @@
                         android:id="@+id/radioGroupPayment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp">
+                        android:layout_marginTop="10dp">
 
                         <RadioButton
                             android:id="@+id/radioCard"
@@ -118,7 +157,7 @@
                             android:checked="true"
                             android:paddingVertical="4dp"
                             android:text="💳 Credit / Debit Card (Visa, MasterCard)"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_white"
                             android:textSize="13sp" />
 
                         <RadioButton
@@ -127,7 +166,7 @@
                             android:layout_height="wrap_content"
                             android:paddingVertical="4dp"
                             android:text="📱 UPI (Google Pay, PhonePe, Paytm)"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_white"
                             android:textSize="13sp" />
 
                         <RadioButton
@@ -136,7 +175,7 @@
                             android:layout_height="wrap_content"
                             android:paddingVertical="4dp"
                             android:text="💵 Cash on Delivery (COD)"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_white"
                             android:textSize="13sp" />
                     </RadioGroup>
 
@@ -145,10 +184,10 @@
                         android:id="@+id/layoutCardDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/bg_rounded_card"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_glass_card"
                         android:orientation="vertical"
-                        android:padding="10dp"
+                        android:padding="12dp"
                         android:visibility="visible">
 
                         <TextView
@@ -162,17 +201,19 @@
                             android:id="@+id/edtCardNumber"
                             android:layout_width="match_parent"
                             android:layout_height="44dp"
-                            android:layout_marginTop="2dp"
-                            android:background="@drawable/bg_rounded_input"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_glass_search"
                             android:hint="4532 •••• •••• 8921"
                             android:inputType="number"
                             android:paddingHorizontal="10dp"
+                            android:textColor="@color/text_white"
+                            android:textColorHint="@color/text_muted"
                             android:textSize="13sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="10dp"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -193,11 +234,13 @@
                                     android:id="@+id/edtCardExpiry"
                                     android:layout_width="match_parent"
                                     android:layout_height="44dp"
-                                    android:layout_marginTop="2dp"
-                                    android:background="@drawable/bg_rounded_input"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/bg_glass_search"
                                     android:hint="08/28"
                                     android:inputType="datetime"
                                     android:paddingHorizontal="10dp"
+                                    android:textColor="@color/text_white"
+                                    android:textColorHint="@color/text_muted"
                                     android:textSize="13sp" />
                             </LinearLayout>
 
@@ -219,12 +262,14 @@
                                     android:id="@+id/edtCardCvv"
                                     android:layout_width="match_parent"
                                     android:layout_height="44dp"
-                                    android:layout_marginTop="2dp"
-                                    android:background="@drawable/bg_rounded_input"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@drawable/bg_glass_search"
                                     android:hint="•••"
                                     android:inputType="numberPassword"
                                     android:maxLength="4"
                                     android:paddingHorizontal="10dp"
+                                    android:textColor="@color/text_white"
+                                    android:textColorHint="@color/text_muted"
                                     android:textSize="13sp" />
                             </LinearLayout>
 
@@ -236,10 +281,10 @@
                         android:id="@+id/layoutUpiDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/bg_rounded_card"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_glass_card"
                         android:orientation="vertical"
-                        android:padding="10dp"
+                        android:padding="12dp"
                         android:visibility="gone">
 
                         <TextView
@@ -253,11 +298,13 @@
                             android:id="@+id/edtUpiId"
                             android:layout_width="match_parent"
                             android:layout_height="44dp"
-                            android:layout_marginTop="2dp"
-                            android:background="@drawable/bg_rounded_input"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_glass_search"
                             android:hint="sonalimotkar@okhdfcbank"
                             android:inputType="textEmailAddress"
                             android:paddingHorizontal="10dp"
+                            android:textColor="@color/text_white"
+                            android:textColorHint="@color/text_muted"
                             android:textSize="13sp" />
                     </LinearLayout>
 
@@ -268,15 +315,16 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                app:cardBackgroundColor="#211E2B"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_glass_card"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -284,7 +332,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Bill Summary"
-                        android:textColor="@color/text_primary"
+                        android:textColor="@color/text_white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -308,7 +356,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="₹ 0.00"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_white"
                             android:textSize="13sp" />
                     </LinearLayout>
 
@@ -332,7 +380,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="₹ 0.00"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_white"
                             android:textSize="13sp" />
                     </LinearLayout>
 
@@ -356,7 +404,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="₹ 40.00"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_white"
                             android:textSize="13sp" />
                     </LinearLayout>
 
@@ -364,7 +412,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginVertical="12dp"
-                        android:background="@color/divider" />
+                        android:background="#2E2B3A" />
 
                     <!-- Grand Total -->
                     <LinearLayout
@@ -377,7 +425,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Grand Total"
-                            android:textColor="@color/text_primary"
+                            android:textColor="@color/text_white"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -386,7 +434,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="₹ 0.00"
-                            android:textColor="@color/primary"
+                            android:textColor="#FFA000"
                             android:textSize="17sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -401,7 +449,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/card_background"
+        android:background="#211E2B"
         android:elevation="8dp"
         android:padding="16dp">
 
@@ -409,8 +457,9 @@
             android:id="@+id/btnPlaceOrder"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:backgroundTint="@color/primary"
+            android:background="@drawable/bg_pill_selected"
             android:text="Place Order • ₹ 0.00"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />

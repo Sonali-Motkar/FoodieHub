@@ -59,15 +59,9 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        Toolbar toolbar = findViewById(R.id.cartToolbar);
-        if (toolbar != null) {
-            try {
-                setSupportActionBar(toolbar);
-                if (getSupportActionBar() != null) {
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                }
-            } catch (Exception ignored) {}
-            toolbar.setNavigationOnClickListener(v -> finish());
+        View btnBack = findViewById(R.id.btnCartBack);
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
         }
 
         dbHelper = new DatabaseHelper(this);

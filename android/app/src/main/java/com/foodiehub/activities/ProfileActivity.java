@@ -2,6 +2,7 @@ package com.foodiehub.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,7 +16,7 @@ import com.foodiehub.models.User;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private ImageView btnBack;
+    private View btnBack;
     private TextView btnHelp;
     private TextView txtName, txtPhone, txtEmail;
     private LinearLayout btnAddress, btnPayments, btnRefunds, btnMoney;

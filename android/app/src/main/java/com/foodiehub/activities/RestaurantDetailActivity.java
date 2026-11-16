@@ -26,7 +26,7 @@ public class RestaurantDetailActivity extends AppCompatActivity implements
         RestaurantDishAdapter.OnDishActionListener,
         RestaurantComboAdapter.OnComboAddListener {
 
-    private ImageView btnBack, btnSearch;
+    private View btnBack, btnSearch;
     private TextView txtHeaderName, txtHeaderTime, txtRecommendedTitle, txtRecommendedChevron, txtAddress;
     private RecyclerView recyclerCombos, recyclerDishes;
     private CardView cardStickyCart, cardFloatingMenu;

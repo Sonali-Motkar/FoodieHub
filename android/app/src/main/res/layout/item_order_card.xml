@@ -5,13 +5,14 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="18dp"
-    app:cardElevation="2dp">
+    app:cardBackgroundColor="#211E2B"
+    app:cardCornerRadius="22dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_glass_card"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -20,32 +21,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Square Restaurant Logo -->
-            <ImageView
-                android:id="@+id/imgRestaurantLogo"
+            <!-- Square Restaurant Logo in Glass Circle -->
+            <FrameLayout
+                android:id="@+id/layoutLogoContainer"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/bg_swiggy_quick_tile"
-                android:padding="4dp"
-                android:src="@drawable/ic_launcher" />
+                android:background="@drawable/bg_glass_circle">
+
+                <ImageView
+                    android:id="@+id/imgRestaurantLogo"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_category_chicken"
+                    app:tint="#FFA000" />
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="12dp"
-                android:layout_toEndOf="@+id/imgRestaurantLogo"
+                android:layout_toEndOf="@+id/layoutLogoContainer"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtRestaurantName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="FoodieHub Kitchen"
-                    android:textColor="#212121"
-                    android:textSize="15sp"
+                    android:text="KFC"
+                    android:textColor="@color/text_white"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -53,8 +61,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="Kothrud, Pune"
-                    android:textColor="#757575"
+                    android:text="Puna wale"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -65,7 +73,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:background="@drawable/bg_badge_active_one"
                 android:gravity="center_vertical"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -73,17 +84,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Delivered"
-                    android:textColor="#00897B"
-                    android:textSize="13sp"
+                    android:textColor="#00E676"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="3dp"
                     android:text="✔"
-                    android:textColor="#00897B"
-                    android:textSize="13sp"
+                    android:textColor="#00E676"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -93,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginVertical="12dp"
-            android:background="#F0F0F2" />
+            android:background="#2E2B3A" />
 
         <!-- Order Items Summary Row -->
         <LinearLayout
@@ -106,11 +117,11 @@
                 android:id="@+id/txtItemQtyBadge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#F5F5F7"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="2dp"
+                android:background="@drawable/bg_glass_circle"
+                android:paddingHorizontal="7dp"
+                android:paddingVertical="3dp"
                 android:text="1 X"
-                android:textColor="#616161"
+                android:textColor="#FFA000"
                 android:textSize="11sp"
                 android:textStyle="bold" />
 
@@ -118,12 +129,12 @@
                 android:id="@+id/txtHistoryItemsSummary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="Classic Paneer Tikka Burger With Reg Fries"
-                android:textColor="#424242"
+                android:text="Crispy Chicken Burger With Reg Fries"
+                android:textColor="@color/text_white"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -131,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginVertical="12dp"
-            android:background="#F0F0F2" />
+            android:background="#2E2B3A" />
 
         <!-- Dual Rating Row: Your Food Rating & Delivery Rating matching Swiggy -->
         <LinearLayout
@@ -151,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your Food Rating"
-                    android:textColor="#616161"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -159,12 +170,12 @@
                     android:id="@+id/txtStarsFood"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="4dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:letterSpacing="0.1"
                     android:text="☆☆☆☆☆"
-                    android:textColor="#BDBDBD"
+                    android:textColor="#757585"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -172,7 +183,7 @@
                 android:layout_width="1dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
-                android:background="#E0E0E0" />
+                android:background="#2E2B3A" />
 
             <!-- Delivery Rating Column -->
             <LinearLayout
@@ -186,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Delivery Rating"
-                    android:textColor="#616161"
+                    android:textColor="@color/text_secondary"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -194,12 +205,12 @@
                     android:id="@+id/txtStarsDelivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="4dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:letterSpacing="0.1"
                     android:text="☆☆☆☆☆"
-                    android:textColor="#BDBDBD"
+                    android:textColor="#757585"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -218,9 +229,10 @@
                 android:layout_height="44dp"
                 android:layout_marginEnd="6dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_swiggy_reorder_btn"
+                android:background="@drawable/bg_glass_card"
                 android:text="REORDER  ›"
-                android:textColor="#E64A19"
+                android:textAllCaps="false"
+                android:textColor="#FFA000"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
@@ -232,6 +244,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_swiggy_track_btn"
                 android:text="Live Track 🛵"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -250,7 +263,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:text="Ordered: Today, 9:45 PM"
-                android:textColor="#757575"
+                android:textColor="@color/text_muted"
                 android:textSize="11sp" />
 
             <TextView
@@ -260,8 +273,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:text="Bill Total: ₹ 284"
-                android:textColor="#212121"
-                android:textSize="12sp"
+                android:textColor="@color/text_white"
+                android:textSize="13sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
